@@ -1,0 +1,33 @@
+class Solution:
+    def maxNumberOfFamilies(self, n: int, r_seats: list[list[int]]) -> int:
+        r = set()
+        l_b = set()
+        r_b = set()
+        m_b = set()
+        
+        for x, y in r_seats:
+            r.add(x)
+            if y == 2 or y == 3:
+                l_b.add(x)
+            elif y == 4 or y == 5:
+                l_b.add(x)
+                m_b.add(x)
+            elif y == 6 or y == 7:
+                r_b.add(x)
+                m_b.add(x)
+            elif y == 8 or y == 9:
+                r_b.add(x)
+                
+        ans = (n - len(r)) * 2
+        
+        for x in r:
+            lf = x not in l_b
+            rf = x not in r_b
+            mf = x not in m_b
+            
+            if lf and rf:
+                ans = ans + 2
+            elif lf or rf or mf:
+                ans = ans + 1
+                
+        return ans
