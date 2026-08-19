@@ -1,0 +1,8 @@
+To find the maximum number of four-person groups, start with \(2 \times n\) total possible groups for all empty rows.
+Then, use a hash map to track reserved seats per row. For each row with reservations, subtract from the maximum based on blocked combinations of seats.
+Algorithm StrategyEmpty Rows: Each row completely free of reservations can seat up to 2 groups (using blocks 2-5 and 6-9, or 4-7).
+Reserved Rows: Map each row to a bitmask or set of reserved seats.
+For every row present in reservedSeats:Check if block 2-5 is free.Check if block 6-9 is free.If both are free, check if middle block 4-7 is free.Assign the maximum possible groups (2, 1, or 0) for that row.
+Unreserved Rows Count: Multiply the number of rows without any reservations by 2 and add them directly to your total.
+ComplexityTime Complexity: \(\mathcal{O}(m)\) where \(m\) is the length of reservedSeats.
+Space Complexity: \(\mathcal{O}(m)\) to store the row-to-reservation mapping
